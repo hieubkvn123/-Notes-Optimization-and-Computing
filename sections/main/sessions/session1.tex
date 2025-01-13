@@ -43,7 +43,12 @@
 \end{definition} 
 
 \begin{definition}[Affine Sets]
-	An affine is a set that contains the line segment between any two distinct points in it. For example,
+	An affine set contains its elements' \textbf{affine combinations}: If $x_1, \dots, x_k$ belongs to an affine set $A$, then it contains the affine combination
+	\begin{equation}
+		\sum_{i=1}^k\theta_i x_i\in A, \quad \theta_i\in\R, \sum_{i=1}^k\theta_i = 1.
+	\end{equation} 
+
+	\noindent For example,
 	\begin{enumerate}
 		\item An empty set is affine because there is no point.
 		\item A singleton is affine because there is only one point.
@@ -51,18 +56,32 @@
 		\item Any vector space is affine.
 		\item Linear subspaces of a vector space is affine.	
 	\end{enumerate} 
-
-	\noindent In other words, an affine set contains its elements' \textbf{affine combinations}: If $x_1, \dots, x_k$ belongs to an affine set $A$, then it contains the affine combination
-	\begin{equation}
-		\sum_{i=1}^k\theta_i x_i\in A, \quad \theta_i\in\R, \sum_{i=1}^k\theta_i = 1.
-	\end{equation} 
 \end{definition} 
 
 \begin{definition}[Convex Sets]
 	A convex set contains its elements' \textbf{convex combinations}: If $x_1, \dots, x_k$ belongs to an affine set $A$, then it contains the convex combination
 	\begin{equation}
 		\sum_{i=1}^k\theta_i x_i\in A, \quad \theta_i\in [0, 1], \sum_{i=1}^k\theta_i = 1.	
-	\end{equation} 
+	\end{equation}
+
+	\noindent For example,
+	\begin{enumerate}
+		\item Norm ball $\bigCurl{x:\|x\|\le r}$ for a given norm $\|\cdot\|$, radius $r$.	
+		\item Hyperplane $\bigCurl{x:a^\top x = b}$ for given $a, b$.
+		\item Halfspace $\bigCurl{x:a^\top x \le b}$ for given $a, b$.
+		\item Affine space $\bigCurl{x:Ax = b}$ for given $A, b$.
+	\end{enumerate}  
+\end{definition} 
+
+\begin{definition}[Convex Hull]
+	Given a discrete set $C=\{x_1, \dots, x_k\}$. The convex hull of $C$, denoted $\mathrm{conv}(C)$, is the set of all convex combinations of points in $C$:
+	\begin{equation}
+		\mathrm{conv}(C) = \biggCurl{
+			\sum_{i=1}^k \theta_ix_i: x_i \in C, \theta_i \ge 0, \sum_{i=1}^k\theta_i = 1 
+		}.
+	\end{equation} 	
+
+	\noindent Convex hulls are always convex.
 \end{definition} 
 
 
