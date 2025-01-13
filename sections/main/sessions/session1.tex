@@ -51,10 +51,18 @@
 		\item Any vector space is affine.
 		\item Linear subspaces of a vector space is affine.	
 	\end{enumerate} 
+
+	\noindent In other words, an affine set contains its elements' \textbf{affine combinations}: If $x_1, \dots, x_k$ belongs to an affine set $A$, then it contains the affine combination
+	\begin{equation}
+		\sum_{i=1}^k\theta_i x_i\in A, \quad \theta_i\in\R, \sum_{i=1}^k\theta_i = 1.
+	\end{equation} 
 \end{definition} 
 
 \begin{definition}[Convex Sets]
-	
+	A convex set contains its elements' \textbf{convex combinations}: If $x_1, \dots, x_k$ belongs to an affine set $A$, then it contains the convex combination
+	\begin{equation}
+		\sum_{i=1}^k\theta_i x_i\in A, \quad \theta_i\in [0, 1], \sum_{i=1}^k\theta_i = 1.	
+	\end{equation} 
 \end{definition} 
 
 
