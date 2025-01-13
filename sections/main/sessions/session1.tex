@@ -29,3 +29,33 @@
 	\item Convex optimization problems can be solved optimally (no local minima).
 	\item Time required to solve convex optimization problems is polynomial (in terms of number of variables and constraints).
 \end{enumerate} 
+
+\subsection{Convex Sets}
+\begin{definition}[Lines]
+	Let $x_1, x_2\in\R^n$. A line passing through $x_1, x_2$ is defined as:
+	\begin{equation}
+		L(x_1, x_2) = \bigCurl{
+			x\in\R^n: x = \theta x_1 + (1-\theta)x_2, \theta\in\R
+		}.
+	\end{equation}
+
+	\noindent When $\theta\in(0,1)$, we restrict the line to the points between $x_1$ and $x_2$ (exclusive). 
+\end{definition} 
+
+\begin{definition}[Affine Sets]
+	An affine is a set that contains the line segment between any two distinct points in it. For example,
+	\begin{enumerate}
+		\item An empty set is affine because there is no point.
+		\item A singleton is affine because there is only one point.
+		\item A line (extends indefinitely) is affine.
+		\item Any vector space is affine.
+		\item Linear subspaces of a vector space is affine.	
+	\end{enumerate} 
+\end{definition} 
+
+\begin{definition}[Convex Sets]
+	
+\end{definition} 
+
+
+
