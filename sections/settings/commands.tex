@@ -1,0 +1,237 @@
+\usepackage{tcolorbox}
+\usepackage{amssymb}
+\tcbuselibrary{theorems}
+\usepackage{amsmath,amsthm}
+\usepackage{thmtools}
+\usepackage[nottoc]{tocbibind}
+\usepackage[english]{babel}
+\usepackage{xhfill}
+\usepackage{changepage}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{framed}
+\usepackage{etoolbox}
+\usepackage[
+    style=authoryear,
+    maxcitenames=1
+]{biblatex} 
+\usepackage{fancyhdr}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{csquotes}
+\usepackage{tikz}
+\usepackage{eso-pic}
+\usepackage{mathabx}
+\usepackage{stackengine}
+% ------------------------------ %
+\usepackage{hyperref}
+\usepackage{cleveref}
+
+%% Set bib style
+\addbibresource{main.bib} 
+
+%% Setting up hyperref options %%
+\hypersetup{
+    colorlinks,
+    linkcolor={red!50!black},
+    citecolor={blue!50!black},
+    urlcolor={blue!80!black}
+}
+
+% Composition operator
+\DeclareFontFamily{U}{mathx}{\hyphenchar\font45}
+\DeclareFontShape{U}{mathx}{m}{n}{
+    <-6> mathx5
+    <6-7> mathx6
+    <7-8> mathx7
+    <8-9> mathx8
+    <9-10> mathx9
+    <10-12> mathx10
+    <12-> mathx12
+}{}
+\DeclareMathSymbol{\bigovoid}{\mathop}{mathx}{"EC}
+\DeclareMathOperator*{\esssup}{ess\,sup}
+\newcommand{\bigO}{\mathop{\stackinset{c}{}{c}{}{ \scalebox{1.1}{$\bigovoid$}}{ \scalebox{1.15}{$\bigovoid$}}}}
+
+
+
+%% Theorem style %%
+\newtheoremstyle{definition}
+                {2pt} % top space
+                {2pt} % bottom space
+                {} % font
+                {0pt} % indent
+                {\bfseries} % theorem name font
+                {. \hrulefill}
+                {\newline}
+                {\thmname{#1}\thmnumber{ #2}\textnormal{\thmnote{ (#3)}}}
+
+\newenvironment{subproof}[1]
+{
+    \begin{adjustwidth}{0pt}{}
+    \textbf{#1}
+    \newline
+}
+{
+    \end{adjustwidth}
+}
+\newtheoremstyle{proof}
+                {0pt} % top space
+                {15pt} % bottom space
+                {} % font
+                {0pt} % indent
+                {\bfseries} % theorem name font
+                {. \hrulefill}
+                {\newline}
+                {\thmname{#1}\thmnumber{ #2}\textnormal{\thmnote{ (#3)}}}
+
+\newtcbtheorem[number within=section, list inside={proplist}]
+    {proposition}% name
+    {Proposition}% title
+    {%
+        colback=red!5,
+        colframe=red!35!black,
+        fonttitle=\bfseries,
+    }% options
+    {prop}% prefix
+
+\newtcbtheorem[number within=section, list inside={theoremlist}]
+    {theorem}% name
+    {Theorem}% title
+    {%
+        colback=blue!5,
+        colframe=blue!35!black,
+        fonttitle=\bfseries,
+    }% options
+    {thm}% prefix
+
+\newtcbtheorem[number within=section, list inside={lemlist}]
+    {lemma}% name
+    {Lemma}% title
+    {%
+        colback=yellow!5,
+        colframe=yellow!35!black,
+        fonttitle=\bfseries,
+    }% options
+    {lem} % prefix
+
+\newtcbtheorem[number within=subsection]
+    {exercise}% name
+    {Exercise}% title
+    {%
+        colback=black!5,
+        colframe=black!35!black,
+        fonttitle=\bfseries,
+    }% options
+    {ex}% prefix
+
+\newtcbtheorem[number within=section, list inside={corolist}]
+    {corollary}% name
+    {Corollary}% title
+    {%
+        colback=cyan!5,
+        colframe=cyan!35!black,
+        fonttitle=\bfseries,
+    }% options
+    {coro} % prefix
+
+%% Remarks %%
+\newtheorem{remark}{Remark}
+
+%% Proofs %%
+\theoremstyle{proof}
+\newtheorem*{pf*}{Proof}
+\newenvironment{proof*}{
+\begin{pf*}
+}{
+\hfill $\square{}$.
+\end{pf*}
+}
+
+%% Exercise solution %%
+\theoremstyle{proof}
+\newtheorem*{sol*}{Solution}
+\newenvironment{solution*}{
+\begin{sol*}
+}{
+\hfill $\square{}$.
+\end{sol*}
+}
+
+%% Definitions %%
+\theoremstyle{definition}
+\declaretheorem[name=Definition, numberwithin=section]{dfn}
+\addto\captionsenglish{ \renewcommand{\listtheoremname}{A \ List of Definitions} }
+\newenvironment{definition}{\begin{dfn}}{\end{dfn}}
+
+%% Indicator function %%
+\DeclareMathAlphabet{\mathmybb}{U}{cmr}{m}{n}
+\newcommand{\1}[1]{\mathmybb{\bf 1}_{\{#1\}}}
+
+%% Brackets %%
+\newcommand{\bigSquare}[1]{
+\Big[ #1 \Big]
+}
+\newcommand{\biggSquare}[1]{
+\Bigg[ #1 \Bigg]
+}
+
+\newcommand{\bigRound}[1]{
+\Big( #1 \Big)
+}
+\newcommand{\biggRound}[1]{
+\Bigg( #1 \Bigg)
+}
+
+\newcommand{\bigCurl}[1]{
+\Big\{ #1 \Big\}
+}
+\newcommand{\biggCurl}[1]{
+\Bigg\{ #1 \Bigg\}
+}
+
+\newcommand{\bigAbs}[1]{
+\Big| #1 \Big|
+}
+\newcommand{\biggAbs}[1]{
+\Bigg| #1 \Bigg|
+}
+
+%% Some shortcuts %%
+% Real numbers
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\Z}{\mathbb{Z}}
+
+% Function class
+\newcommand{\Hf}{\mathcal{H}}
+
+% Feature set
+\newcommand{\X}{\mathcal{X}}
+
+% Label set
+\newcommand{\Y}{\mathcal{Y}}
+
+% Cover
+\newcommand{\C}{\mathcal{C}}
+
+% Rademacher complexity
+\newcommand{\RC}{\mathfrak{R}}
+\newcommand{\ERC}{\widehat{\mathfrak{R}}}
+
+% Others
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\G}{\mathcal{G}}
+\newcommand{\vecbf}[1]{{\bf #1}}
+
+% Inner product
+\newcommand{\inner}[1]{\big<#1\big>}
+
+% To denote layer number in neural networks
+\newcommand{\A}[1]{A^{(#1)}}
+\newcommand{\bA}[1]{{\bar A}^{(#1)}}
+\newcommand{\M}[1]{M^{(#1)}}
+
+% Outer measure
+\newcommand{\om}{\mu^*}
+

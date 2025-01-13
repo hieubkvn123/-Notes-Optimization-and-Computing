@@ -1,0 +1,31 @@
+\newcommand{\cvxopt}{{\bf CVXOPT}}
+\section{Introduction}
+\begin{definition}[Optimization Problem]
+	Generally, an optimization problem is defined as follows:
+	\begin{equation}\begin{aligned}
+		\textup{minimize}: 		& \ f_0(x) \\
+		\textup{subject to}: 	& \ f_i(x) \le 0, \quad i = 1, \dots, m \\
+								& \ h_i(x) = 0, \quad i = 1, \dots, p.	
+	\end{aligned}\end{equation} 
+	\noindent Where we have:
+	\begin{enumerate}
+		\item $x\in\R^n$ is the optimization variable.
+		\item $f_0:\R^n\to\R$ is the opjective (cost function).
+		\item $f_i:\R^n\to\R$ are inequality constraints.
+		\item $h_i:\R^n\to\R$ are equality constraints.
+	\end{enumerate} 
+\end{definition} 
+
+\begin{definition}[Convex Optimization Problem]
+	\noindent An optimization problem is a \textbf{convex optimization problem} if:
+	\begin{enumerate}
+		\item $f_0, f_1, \dots, f_m$ are convex.
+		\item Equality constraints are affine.
+	\end{enumerate} 
+\end{definition} 
+
+\noindent The reason why we need convex optimization problems are:
+\begin{enumerate}
+	\item Convex optimization problems can be solved optimally (no local minima).
+	\item Time required to solve convex optimization problems is polynomial (in terms of number of variables and constraints).
+\end{enumerate} 

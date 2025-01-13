@@ -1,0 +1,46 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{enumitem}
+
+% Settings 
+\input{sections/settings/variables}
+\input{sections/settings/commands}
+
+% Title 
+\input{sections/main/title}
+
+\begin{document}
+%% ========================================================================= %%
+
+%% Return to content button %%
+\AddToShipoutPicture{%
+\begin{tikzpicture}[remember picture,overlay]
+    \node [rectangle, anchor=center, yshift=2cm] 
+    (box\thepage) at 
+    (current page.south){\hyperlink{mytableofcontents}{
+        \centering
+        \includegraphics[width=0.5cm]{figures/back_to_top_button.png}} \\
+        \textit{\ \underline{\hyperlink{tableofcontents}{\textbf{Return to Contents}}}}
+    };
+\end{tikzpicture}}
+
+%% Title page %%
+\maketitle
+
+%% Table of contents %%
+\tableofcontents
+
+%% Sample sections %%
+\newpage
+\input{sections/sample/sample}
+\input{sections/manual/manual}
+
+%% Main sections %%
+\input{sections/main/sessions/session1}
+
+
+%% Appendices %%
+\input{sections/main/footnotes}
+
+%% ========================================================================= %%
+\end{document}
