@@ -85,4 +85,53 @@
 \end{definition} 
 
 
+\subsection{Convex Functions}
+\begin{definition}[Convex Function]
+	A function $f:\R\to\R$ is convex if
+	\begin{enumerate}[label=(\roman*)]
+		\item $\mathrm{dom} f$ is convex.
+		\item $f(\alpha x + (1-\alpha)y) \le \alpha f(x) + (1-\alpha)f(y), \forall x, y\in\mathrm{dom} f, \alpha\in [0,1]$.
+	\end{enumerate} 
+
+	\noindent A function $f$ is concave if $-f$ is convex.
+\end{definition}
+
+
+\begin{definition}[Strictly Convex Function]
+	A function $f:\R\to\R$ is convex if
+	\begin{enumerate}[label=(\roman*)]
+		\item $\mathrm{dom} f$ is convex.
+		\item $f(\alpha x + (1-\alpha)y) \color{red}<\color{black} \alpha f(x) + (1-\alpha)f(y), \forall x, y\in\mathrm{dom} f, \alpha\in [0,1]$.
+	\end{enumerate} 
+
+	\noindent A strictly convex function implies a unique global minimum.
+\end{definition}
+
+\noindent\newline\textbf{Test for Convexity of Function}: We have the following tests for the convexity of any (real-valued vector) functions.
+\begin{enumerate}			
+	\item Second-order derivative test.
+	\item Restriction to a line.
+	\item Epigraph.
+\end{enumerate} 
+
+\begin{proposition}{Restriction to A Line}{restriction_to_line}
+	A function $f:\R^n\to\R$ is convex iff $g:\R\to\R$, defined as $g(t)=f(x+t\nu)$ is convex in $t$ for any $x\in\mathrm{dom}f$ and $\nu\in \R^n$.	Furthermore,
+	\begin{equation}
+		\mathrm{dom} g = \bigCurl{
+			t\in\R: x+tv \in \mathrm{dom}f
+		}.
+	\end{equation} 
+\end{proposition} 
+
+
+\begin{proof*}
+	We prove from both directions.
+	\begin{enumerate}[label=(\roman*)]
+		\item \textbf{$f$ convex $\implies$ $g$ convex}: There are two sub-sections to prove - $\mathrm{dom}g$ is convex and $g(\alpha t_1 + (1-\alpha)t_2)\le \alpha g(t_1) + (1-\alpha)g(t_2), \ \forall \alpha\in(0,1); t_1, t_2\in \mathrm{dom}g$.	
+	\end{enumerate} 	
+\end{proof*} 
+
+\begin{proposition}{Second Order Derivative Test}{second_order_der_test}
+	
+\end{proposition} 
 
