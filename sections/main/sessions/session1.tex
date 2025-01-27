@@ -1,4 +1,5 @@
 \newcommand{\cvxopt}{{\bf CVXOPT}}
+\newcommand{\dom}{{\bf \mathrm{dom}}}
 \section{Introduction}
 \begin{definition}[Optimization Problem]
 	Generally, an optimization problem is defined as follows:
@@ -109,6 +110,7 @@
 
 \noindent\newline\textbf{Test for Convexity of Function}: We have the following tests for the convexity of any (real-valued vector) functions.
 \begin{enumerate}			
+	\item First-order derivative test.
 	\item Second-order derivative test.
 	\item Restriction to a line.
 	\item Epigraph.
@@ -128,6 +130,7 @@
 	We prove from both directions.
 	\begin{enumerate}[label=(\roman*)]
 		\item \textbf{$f$ convex $\implies$ $g$ convex}: There are two sub-sections to prove - $\mathrm{dom}g$ is convex and $g(\alpha t_1 + (1-\alpha)t_2)\le \alpha g(t_1) + (1-\alpha)g(t_2), \ \forall \alpha\in(0,1); t_1, t_2\in \mathrm{dom}g$.	
+		\item \textbf{$g$ convex $\implies$ $f$ convex}:
 	\end{enumerate} 	
 \end{proof*} 
 
