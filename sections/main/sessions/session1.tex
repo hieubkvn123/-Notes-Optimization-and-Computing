@@ -1,5 +1,5 @@
 \newcommand{\cvxopt}{{\bf CVXOPT}}
-\newcommand{\dom}{{\bf \mathrm{dom}}}
+\newcommand{\dom}{{\mathrm{\bf dom}}}
 \section{Introduction}
 \begin{definition}[Optimization Problem]
 	Generally, an optimization problem is defined as follows:
@@ -90,8 +90,8 @@
 \begin{definition}[Convex Function]
 	A function $f:\R\to\R$ is convex if
 	\begin{enumerate}[label=(\roman*)]
-		\item $\mathrm{dom} f$ is convex.
-		\item $f(\alpha x + (1-\alpha)y) \le \alpha f(x) + (1-\alpha)f(y), \forall x, y\in\mathrm{dom} f, \alpha\in [0,1]$.
+		\item $\dom f$ is convex.
+		\item $f(\alpha x + (1-\alpha)y) \le \alpha f(x) + (1-\alpha)f(y), \forall x, y\in\dom f, \alpha\in [0,1]$.
 	\end{enumerate} 
 
 	\noindent A function $f$ is concave if $-f$ is convex.
@@ -101,8 +101,8 @@
 \begin{definition}[Strictly Convex Function]
 	A function $f:\R\to\R$ is convex if
 	\begin{enumerate}[label=(\roman*)]
-		\item $\mathrm{dom} f$ is convex.
-		\item $f(\alpha x + (1-\alpha)y) \color{red}<\color{black} \alpha f(x) + (1-\alpha)f(y), \forall x, y\in\mathrm{dom} f, \alpha\in [0,1]$.
+		\item $\dom f$ is convex.
+		\item $f(\alpha x + (1-\alpha)y) \color{red}<\color{black} \alpha f(x) + (1-\alpha)f(y), \forall x, y\in\dom f, \alpha\in [0,1]$.
 	\end{enumerate} 
 
 	\noindent A strictly convex function implies a unique global minimum.
@@ -117,24 +117,86 @@
 \end{enumerate} 
 
 \begin{proposition}{Restriction to A Line}{restriction_to_line}
-	A function $f:\R^n\to\R$ is convex iff $g:\R\to\R$, defined as $g(t)=f(x+t\nu)$ is convex in $t$ for any $x\in\mathrm{dom}f$ and $\nu\in \R^n$.	Furthermore,
+	A function $f:\R^n\to\R$ is convex iff $g_{x, \nu}:\R\to\R$, defined as $g_{x,\nu}(t)=f(x+t\nu)$ is convex in $t$ for any $x\in\dom f$ and $\nu\in \R^n$.	Furthermore,
 	\begin{equation}
-		\mathrm{dom} g = \bigCurl{
-			t\in\R: x+tv \in \mathrm{dom}f
-		}.
+		\dom g_{x, \nu} = \bigCurl{
+			t\in\R: x+t\nu \in \dom f
+		} \subset \R.
 	\end{equation} 
 \end{proposition} 
 
 
-\begin{proof*}
+\begin{proof*}[Proposition \ref{prop:restriction_to_line}]
 	We prove from both directions.
 	\begin{enumerate}[label=(\roman*)]
-		\item \textbf{$f$ convex $\implies$ $g$ convex}: There are two sub-sections to prove - $\mathrm{dom}g$ is convex and $g(\alpha t_1 + (1-\alpha)t_2)\le \alpha g(t_1) + (1-\alpha)g(t_2), \ \forall \alpha\in(0,1); t_1, t_2\in \mathrm{dom}g$.	
-		\item \textbf{$g$ convex $\implies$ $f$ convex}:
+		\item \textbf{$f$ convex $\implies$ $g_{x, \nu}$ convex}: There are two sub-sections to prove - $\dom g_{x,\nu}$ is convex and $g_{x, \nu}(\alpha t_1 + (1-\alpha)t_2)\le \alpha g_{x, \nu}(t_1) + (1-\alpha)g_{x, \nu}(t_2), \ \forall \alpha\in(0,1); t_1, t_2\in \dom g_{x, \nu}$.	
+		\begin{itemize}
+			\item $\dom g_{x, \nu}$ is convex: Let $t_1, t_2\in\dom g_{x, \nu}$. Then, we have $x+t_1\nu, x+t_2\nu\in\dom f$. Then, by convexity of $\dom f$, for all $\alpha\in(0,1)$, we have $x+[\alpha t_1 + (1-\alpha)t_2]\nu\in\dom f$. Hence, we have $\alpha t_1 + (1-\alpha)t_2\in\dom g_{x, \nu}$, making $\dom g_{x, \nu}$ convex.
+
+			\item For $\alpha\in(0,1)$ and $t_1, t_2\in \dom g_{x, \nu}$: 
+			\begin{align*}
+				g_{x,\nu}(\alpha t_1 + (1-\alpha)t_2) &= f\bigRound{
+					\alpha(x+t_1\nu) + (1-\alpha)(x+t_2\nu)
+				} \\
+				&\le \alpha f(x+t_1\nu) + (1-\alpha)f(x+t_2\nu)\\
+				&= \alpha g(t_1) + (1-\alpha)g(t_2).
+			\end{align*} 
+
+			\noindent Hence, $g$ is convex.
+		\end{itemize} 
+		\item \textbf{$g_{x,\nu}$ convex $\implies$ $f$ convex}: This direction is proven similarly without much deviation.
+	\end{enumerate} 	
+\end{proof*} 
+
+\begin{proposition}{First Order Derivative Test}{first_order_der_test}
+	Let $f:\R^n\to\R$ be a differentiable function. Then, $f$ is convex iff the following are satisfied for all $x, y\in\dom f$:
+	\begin{equation}
+		\label{eq:first_order_der_test}
+		f(y) \ge \nabla f(x)^\top (y-x) + f(x).
+	\end{equation} 
+\end{proposition} 
+
+\begin{proof*}[Proposition \ref{prop:first_order_der_test}]
+	We prove both directions separately.
+	\begin{enumerate}[label=(\roman*)]
+		\item $f$ convex $\implies$ Eqn. \eqref{eq:first_order_der_test} holds: Let $\alpha\in(0,1)$. Then for every $x, y\in\dom f$, we have:
+		\begin{align*}
+			f(\alpha y + (1-\alpha)x) &= f(x+\alpha(y-x)) \\
+			 	&\le \alpha f(y) + (1-\alpha)f(x).
+		\end{align*} 
+
+		\noindent Set $\Delta=y-x$, we have:
+		\begin{align*}
+			f(x+\alpha\Delta) - f(x) &\le \alpha [f(y) - f(x)] \\
+			\implies
+			\frac{f(x+\alpha\Delta) - f(x)}{\alpha\Delta} &\le \frac{f(y) - f(x)}{\Delta}.
+		\end{align*}
+
+		\noindent Taking the limit as $\alpha\to 0$ from both sides, we have $\nabla f(x)^\top\le \frac{f(y)-f(x)}{y-x}$. Hence, we proved Eqn. \eqref{eq:first_order_der_test} holds.
+
+		\item Eqn. \eqref{eq:first_order_der_test} holds $\implies$ $f$ convex: For any $\alpha\in(0,1)$. For any $x, y\in\dom f$, let $z=\alpha x + (1-\alpha)y$. Then, since Eqn.~\eqref{eq:first_order_der_test} holds, we have:
+		\begin{align*}
+			f(x) &\ge f(z) + \nabla f(z)^\top (x-z), \\
+			f(y) &\ge f(z) + \nabla f(z)^\top (y-z).
+		\end{align*} 
+
+		\noindent Then, we have:
+		\begin{align*}
+			\alpha f(x) + (1-\alpha) f(y) &\ge f(z) + \nabla f(z)^\top [\alpha x + (1-\alpha)y - z] \\
+			&= f(z) \\
+			&= f(\alpha x + (1-\alpha)y).
+		\end{align*} 
+
+		\noindent Hence, $f$ is convex.
 	\end{enumerate} 	
 \end{proof*} 
 
 \begin{proposition}{Second Order Derivative Test}{second_order_der_test}
 	Let $f:\R^n\to\R$ be a twice-differentiable function. Then, $f$ is convex iff $\nabla^2 f(x)\succeq	0$ (positive semi-definite Hessian).
 \end{proposition} 
+
+\begin{proof*}[Proposition \ref{prop:second_order_der_test}]
+	
+\end{proof*} 
+
 
